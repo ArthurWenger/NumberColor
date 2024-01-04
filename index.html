@@ -2,17 +2,10 @@
 <html>
 <head>
     <title>Ma Page Web</title>
-    <style>
-        #affichageCouleur {
-            width: 100px;
-            height: 100px;
-            border: 1px solid #000;
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <h1>Bienvenue sur ma page web GitHub!</h1>
+    <h1>Cette page associe un nombre à sa couleur</h1>
     <p>Entrez un nombre pour voir la couleur associée :</p>
     <input type="number" id="nombreInput" placeholder="Entrez un nombre">
     <button onclick="afficherCouleur()">Voir la couleur</button>
@@ -22,13 +15,15 @@
         function afficherCouleur() {
             var nombre = document.getElementById("nombreInput").value;
             var couleur = determinerCouleur(nombre);
-            document.getElementById("affichageCouleur").style.backgroundColor = couleur;
+            var affichage = document.getElementById("affichageCouleur");
+            affichage.style.backgroundColor = couleur;
+            affichage.innerHTML = couleur ? "Couleur" : ""; // Affiche "Couleur" si une couleur est définie
         }
 
         function determinerCouleur(nombre) {
             // Remplacez cette logique par votre propre logique de détermination de couleur
             if (nombre % 2 === 0) {
-                return "red"; // Utilisez des codes couleur CSS standard
+                return "red";
             } else {
                 return "blue";
             }
