@@ -15,9 +15,9 @@
                 <h1 class="text-center mb-4">Cette page associe un nombre à sa couleur</h1>
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mt-5">
             <div class="col-auto">
-                <input type="number" id="nombreInput" class="form-control form-control-sm" placeholder="Nombre"
+                <input type="number" id="nombreInput" class="form-control" placeholder="Nombre"
                     onkeypress="verifierEntree(event)">
             </div>
             <div class="col-auto">
@@ -26,7 +26,8 @@
         </div>
         <div class="row justify-content-center mt-4">
             <div class="col-auto">
-                <div id="affichageCouleur"></div>
+                <div id="affichageCouleur" class="border"></div>
+                <p id="categorieTexte" class="mt-2 alert alert-info"></p>
             </div>
         </div>
     </div>
@@ -53,54 +54,55 @@
         }
 
 
+        function lowercaseFirstLetter(string) {
+            return string.charAt(0).toLowerCase() + string.slice(1);
+        }
+
         function determinerCouleur(nombre) {
             if (nombre === null || nombre === '' || isNaN(nombre)) {
-                return 'erreur'; // Retourne 'erreur' si l'entrée n'est pas un nombre
+                return { couleur: "none", message: "Entrée invalide" };
             }
 
-            nombre = parseInt(nombre, 10); // Convertir l'entrée en un nombre entier
+            nombre = parseInt(nombre, 10);
 
-            let isMult9 = nombre % 9 === 0;
-            let isMult7 = nombre % 7 === 0;
-            let isMult4 = nombre % 4 === 0;
-            let isMult5 = nombre % 5 === 0;
+            let categories = [];
+            if (nombre % 9 === 0 && nombre % 7 === 0) categories.push({ couleur: "red", message: "Multiple de 9 et 7" });
+            if (nombre % 9 === 0 && nombre % 7 !== 0) categories.push({ couleur: "lightblue", message: "Multiple de 3 et 9" });
+            if (nombre % 4 === 0 && nombre % 7 === 0) categories.push({ couleur: "blue", message: "Multiple de 4 et 7" });
+            if (nombre % 5 === 0 && nombre % 7 === 0) categories.push({ couleur: "yellow", message: "Multiple de 5 et 7" });
+            if (400 % nombre === 0) categories.push({ couleur: "brown", message: "Diviseur de 400" });
+            if (isPrime(nombre)) categories.push({ couleur: "green", message: "Nombre premier" });
 
-            if (isMult9 && isMult7) {
-                return "red"; // rouge
+            if (categories.length > 1) {
+                let catMessages = categories.map(cat => lowercaseFirstLetter(cat.message)).join(", ");
+                return { couleur: "none", message: "Plusieurs catégories : " + catMessages };
+            } else if (categories.length === 1) {
+                return categories[0];
+            } else {
+                return { couleur: "none", message: "Aucune catégorie correspondante dans l'exercice" };
             }
-            if (isMult9) {
-                return "lightblue"; // bleu clair
-            }
-            if (isMult4 && isMult7) {
-                return "blue"; // bleu
-            }
-            if (isMult5 && isMult7) {
-                return "yellow"; // jaune
-            }
-            if (400 % nombre === 0) {
-                return "brown"; // marron
-            }
-            if (isPrime(nombre)) {
-                return "green"; // vert
-            }
-            return 'erreur';
         }
 
         function afficherCouleur() {
             var nombre = document.getElementById("nombreInput").value;
-            var couleur = determinerCouleur(nombre);
+            var resultat = determinerCouleur(nombre);
             var affichage = document.getElementById("affichageCouleur");
+            var categorieTexte = document.getElementById("categorieTexte");
 
-            if (couleur === 'erreur') {
-                affichage.innerHTML = "Erreur";
-                affichage.style.backgroundColor = 'transparent';
-                affichage.style.color = 'black';
-                affichage.style.border = '1px solid black';
+            // Mise à jour du texte et des styles communs
+            categorieTexte.innerHTML = resultat.message;
+            categorieTexte.style.display = 'block';
+
+            if (resultat.couleur === 'none') {
+                // Configuration spécifique en cas d'erreur
+                affichage.style.display = 'none';
+                categorieTexte.classList.add("alert-danger");
             } else {
-                affichage.innerHTML = '';
-                affichage.style.backgroundColor = couleur;
+                // Configuration pour afficher le cercle de couleur
+                affichage.style.backgroundColor = resultat.couleur;
                 affichage.style.border = '1px solid black';
-                affichage.style.color = 'transparent'; // Cache le texte s'il y en a
+                affichage.style.display = 'block';
+                categorieTexte.classList.remove("alert-danger");
             }
         }
 
