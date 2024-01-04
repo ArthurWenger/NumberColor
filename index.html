@@ -52,9 +52,10 @@
             return true;
         }
 
+
         function determinerCouleur(nombre) {
             if (nombre === null || nombre === '' || isNaN(nombre)) {
-                return 'erreur'; // Afficher un message d'erreur si l'entrée n'est pas un nombre
+                return 'erreur'; // Retourne 'erreur' si l'entrée n'est pas un nombre
             }
 
             nombre = parseInt(nombre, 10); // Convertir l'entrée en un nombre entier
@@ -65,24 +66,24 @@
             let isMult5 = nombre % 5 === 0;
 
             if (isMult9 && isMult7) {
-                return "rouge";
+                return "red"; // rouge
             }
             if (isMult9) {
-                return "bleu_clair";
+                return "lightblue"; // bleu clair
             }
             if (isMult4 && isMult7) {
-                return "bleu";
+                return "blue"; // bleu
             }
             if (isMult5 && isMult7) {
-                return "jaune";
+                return "yellow"; // jaune
             }
             if (400 % nombre === 0) {
-                return "marron";
+                return "brown"; // marron
             }
             if (isPrime(nombre)) {
-                return "vert";
+                return "green"; // vert
             }
-            return 'erreur'; // Si aucune condition n'est remplie, afficher un message d'erreur
+            return 'erreur';
         }
 
         function afficherCouleur() {
@@ -94,18 +95,12 @@
                 affichage.innerHTML = "Erreur";
                 affichage.style.backgroundColor = 'transparent';
                 affichage.style.color = 'black';
+                affichage.style.border = '1px solid black';
             } else {
                 affichage.innerHTML = '';
                 affichage.style.backgroundColor = couleur;
-            }
-            affichage.style.border = '1px solid black';
-        }
-
-        function determinerCouleur(nombre) {
-            if (nombre % 2 === 0) {
-                return "red";
-            } else {
-                return "blue";
+                affichage.style.border = '1px solid black';
+                affichage.style.color = 'transparent'; // Cache le texte s'il y en a
             }
         }
 
