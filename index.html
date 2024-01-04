@@ -26,6 +26,7 @@
     <script>
         function afficherCouleur() {
             var nombre = document.getElementById("nombreInput").value;
+            console.log(nombre);
             var couleur = determinerCouleur(nombre);
             var affichage = document.getElementById("affichageCouleur");
             affichage.style.backgroundColor = couleur;
