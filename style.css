@@ -15,6 +15,7 @@ input[type="number"] {
     height: 150px;
     border-radius: 50%; /* Arrondir pour faire un cercle */
     margin: 20px auto;
+    border: 1px solid black;
 }
 
 
