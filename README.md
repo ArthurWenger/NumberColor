@@ -1,2 +1,2 @@
-# Nombres en couleur
+# Nombres en couleurs
 Une aide pour Aurélien
