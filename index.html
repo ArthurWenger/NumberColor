@@ -66,13 +66,23 @@
 
             nombre = parseInt(nombre, 10);
 
+            let isMult9 = nombre % 9 === 0;
+            let isMult7 = nombre % 7 === 0;
+            let isMult4 = nombre % 4 === 0;
+            let isMult5 = nombre % 5 === 0;
+            let isDiv400 = 400 % nombre === 0;
+            let isPrimeNum = isPrime(nombre);
+
             let categories = [];
-            if (nombre % 9 === 0 && nombre % 7 === 0) categories.push({ couleur: "red", message: "Multiple de 9 et 7" });
-            if (nombre % 9 === 0 && nombre % 7 !== 0) categories.push({ couleur: "lightblue", message: "Multiple de 3 et 9" });
-            if (nombre % 4 === 0 && nombre % 7 === 0) categories.push({ couleur: "blue", message: "Multiple de 4 et 7" });
-            if (nombre % 5 === 0 && nombre % 7 === 0) categories.push({ couleur: "yellow", message: "Multiple de 5 et 7" });
-            if (400 % nombre === 0) categories.push({ couleur: "brown", message: "Diviseur de 400" });
-            if (isPrime(nombre)) categories.push({ couleur: "green", message: "Nombre premier" });
+            if (isMult9 && isMult7) categories.push({ couleur: "red", message: "Multiple de 9 et 7" });
+            else if (isMult9) categories.push({ couleur: "lightblue", message: "Multiple de 3 et 9" });
+
+            if (isMult4 && isMult7) categories.push({ couleur: "blue", message: "Multiple de 4 et 7" });
+            if (isMult5 && isMult7) categories.push({ couleur: "yellow", message: "Multiple de 5 et 7" });
+
+            if (isDiv400) categories.push({ couleur: "brown", message: "Diviseur de 400" });
+            if (isPrimeNum) categories.push({ couleur: "green", message: "Nombre premier" });
+
 
             if (categories.length > 1) {
                 let catMessages = categories.map(cat => lowercaseFirstLetter(cat.message)).join(", ");
