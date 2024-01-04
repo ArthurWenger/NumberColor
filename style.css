@@ -1,0 +1,61 @@
+/* Style pour masquer les flèches dans l'input de type number */
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+/* Style pour le div d'affichage de couleur */
+#affichageCouleur {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Arrondir pour faire un cercle */
+    margin: 20px auto;
+}
+
+
+
+/* body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 50px;
+}
+
+h1 {
+    color: #333;
+}
+
+#nombreInput {
+    padding: 10px;
+    width: 200px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#affichageCouleur {
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+    margin: 20px auto;
+    line-height: 150px;
+    font-size: 24px;
+    color: #fff;
+    border: 3px solid #ddd;
+} */
