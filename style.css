@@ -1,21 +1,29 @@
 /* Style pour masquer les flèches dans l'input de type number */
-input[type="number"]::-webkit-inner-spin-button, 
-input[type="number"]::-webkit-outer-spin-button { 
-    -webkit-appearance: none; 
-    margin: 0; 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input[type="number"] {
-    -moz-appearance: textfield; /* Firefox */
+    -moz-appearance: textfield;
+    /* Firefox */
 }
 
 /* Style pour le div d'affichage de couleur */
 #affichageCouleur {
     width: 150px;
     height: 150px;
-    border-radius: 50%; /* Arrondir pour faire un cercle */
+    border-radius: 50%;
+    /* Arrondir pour faire un cercle */
     margin: 20px auto;
     border: 1px solid transparent;
+}
+
+/* Style initial pour masquer le cercle et le message */
+#affichageCouleur,
+#categorieTexte {
+    display: none;
 }
 
 
